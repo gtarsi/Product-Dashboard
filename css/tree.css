@@ -1,0 +1,98 @@
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+
+.node rect {
+  stroke-width: 1px;
+}
+
+div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;   /* We'll override height later */
+    background-color: teal;
+    margin-right: 2px;
+}
+
+.axis path,
+
+.axis line {
+	fill: none;
+	stroke: gray;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: sans-serif;
+	font-size: 10px;
+	/*font-weight: bold;*/
+}
+
+div.header {
+    font-family: sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 1500px;
+    color: #222;
+    border-bottom: 1px solid #aaa;
+    margin: 20px;
+}
+
+div.container {
+	min-width: 1500px;
+}
+
+div.footer {
+    font-family: sans-serif;
+    font-size: 10px;
+    color: #bbb;
+    min-width: 1500px;
+    border-top: 1px solid #ddd;
+    margin: 20px;
+    padding-top: 5px;
+    text-align: right;
+}
+
+div.leftmenu {
+	float: left;
+	width: 200px;
+	height: 600px;
+	margin-left: 20px;
+	padding-left: 10px;
+	background-color: #EEEEEE;
+}
+
+div.main {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.info {
+	float: right;
+	width: 300px;
+	height: 600px;
+	margin-left: auto;
+	margin-right: 20px;
+	padding-left: 10px;
+	background-color: white;
+}
+
+svg {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+}

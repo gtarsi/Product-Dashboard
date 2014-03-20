@@ -1,0 +1,63 @@
+{
+	"nodeName":"Prevelance", 
+	"size":1000,
+	"keyInfo": ["Lots of people have this disease.", 
+				"Incidence in the US has been declining.", 
+				"New initiatives for screening are being put in place by the government."],
+	"children": [
+
+		{
+			"nodeName":"Diagnosed",
+			"size":600,
+			"keyInfo": ["Some have gotten diagnosed.", 
+						"Sources:", 
+						"NHANES",
+						"Paul Smith, et al."],
+			"children": [
+				{
+					"nodeName":"Treated",
+					"size":400,
+					"children": [
+						{
+							"nodeName":"Initiations",
+							"size":200
+							},
+						{
+							"nodeName":"Switches",
+							"size":130
+							},
+						{
+							"nodeName":"Continuing",
+							"size":70
+						}
+					]
+					},
+				{
+					"nodeName":"Not Treated",
+					"size":200,
+					"children": [
+						{
+							"nodeName":"Naive",
+							"size":160
+							},
+						{
+							"nodeName":"Experienced",
+							"size":40
+						}]
+				}				
+
+			]
+		},
+		{
+			"nodeName":"Undiagnosed",
+			"size":400
+			},
+		{
+			"nodeName":"Mortality",
+			"size":0	
+		}
+
+	]
+
+	
+}
