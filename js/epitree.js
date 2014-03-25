@@ -31,7 +31,7 @@ var svg = d3.select("div.main").append("svg")
 //d3.select(self.frameElement).style("height", height + "px");
 
 
-d3.json("js/epitree.json", function(error, root) {
+d3.json("data/epitree.json", function(error, root) {
 
   nodes = tree.nodes(root);
   links = tree.links(nodes);
@@ -41,6 +41,7 @@ d3.json("js/epitree.json", function(error, root) {
 });
 
 d3.select(".epitree").on("click", makeEpiTree);
+d3.select(".waterfall").on("click", function() {makeWaterfall("Initiations")});
 
 
 function makeEpiTree() {
@@ -81,6 +82,7 @@ function makeEpiTree() {
 
   node.append("text")
       .attr("font-size", "14px")
+      .attr("class", "boxLabel")
       .style("text-anchor", "middle")
       .style("dominant-baseline", "middle")
       .text(function(d) { return d.nodeName; });
@@ -198,14 +200,17 @@ function elbow(d) {
 
 function mouseover() {
     d3.select(this).select("rect")
-      .transition().duration(50).attr("fill", "orange")
+      .transition().duration(25).attr("fill", barHighlightColor);
     
+    d3.select(this).select("text.boxLabel")
+      .transition().duration(25).attr("fill", "white") //.attr("font-weight", "bold");
+
     var infobox = d3.select("div.info");
     infobox.selectAll("p").remove();
 
     if ("keyInfo" in d3.select(this).datum()) {
 
-        infobox.style("background-color", "#eeeeee");
+        infobox.style("background-color", barColor);
 
         for (i=0; i < d3.select(this).datum().keyInfo.length; i++) {
           infobox.append("p").text(d3.select(this).datum().keyInfo[i]);
@@ -215,7 +220,10 @@ function mouseover() {
 
 function mouseout() {
     d3.select(this).select("rect")
-      .transition().duration(100).attr("fill", "#eeeeee");
+      .transition().duration(50).attr("fill", "#eeeeee");
+
+    d3.select(this).select("text.boxLabel")
+      .transition().duration(50).attr("fill", "black") //.attr("font-weight", "normal");
 
     d3.select("div.info").style("background-color","white");
     d3.select("div.info").selectAll("p").remove();
