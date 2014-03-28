@@ -12,7 +12,7 @@
 			"keyInfo": ["Some have gotten diagnosed.", 
 						"Sources:", 
 						"NHANES",
-						"Paul Smith, et al."],
+						"Joe Smith, et al."],
 			"children": [
 				{
 					"nodeName":"Treated",

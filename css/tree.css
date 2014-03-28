@@ -71,7 +71,7 @@ div.leftmenu {
 	height: 600px;
 	margin-left: 20px;
 	padding-left: 10px;
-	background-color: #EEEEEE;
+	background-color: #F5F7FC;
 }
 
 div.main {
@@ -89,6 +89,14 @@ div.info {
 	background-color: white;
 }
 
+p {
+  color: #3F6FB8;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: italic;
+}
+
+
 svg {
     margin-left: auto;
     margin-right: auto;
@@ -96,3 +104,21 @@ svg {
     margin-bottom: 50px;
     display: block;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 3px;
+}
+
+li {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #3F6FB8;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+li:hover {
+  font-weight: bold;
+}
+
