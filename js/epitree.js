@@ -19,6 +19,8 @@ var waterNodes;
 
 var MM_Data;
 
+var percentFormat = d3.format(".0%");
+
 var tree = d3.layout.tree()
             .separation(separation)
             .size([width, height-150]);
@@ -332,8 +334,9 @@ function mouseover() {
     d3.select(this).select("text.boxLabel")
       .transition().duration(25).attr("fill", "white") //.attr("font-weight", "bold");
 
-    var infobox = d3.select("div.info");
+    var infobox = d3.select("#info");
     infobox.selectAll("p").remove();
+    infobox.attr("class", "none");
 
     if ("keyInfo" in d3.select(this).datum()) {
 
@@ -352,14 +355,12 @@ function mouseout() {
     d3.select(this).select("text.boxLabel")
       .transition().duration(50).attr("fill", "black") //.attr("font-weight", "normal");
 
-    d3.select("div.info").style("background-color","white");
-    d3.select("div.info").selectAll("p").remove();
+    d3.select("#info").style("background-color","white");
+    d3.select("#info").selectAll("p").remove();
   };
 
 
 function mouseover2() {
-
-    var percentFormat = d3.format(".0%");
 
     d3.select(this).select("rect.displayed")
         .transition().duration(0).attr("fill", barHighlightColor);
@@ -406,64 +407,85 @@ function mouseout2() {
   };
 
 
-  function mouseoverCell() {
-    
-    var data = d3.select(this).datum();
-    var h = 200;
-    var w = 150;
+function mouseoverCell() {
+  
+  var data = d3.select(this).datum();
+  var h = 200;
+  var w = 150;
 
 
-    d3.select(this).select("rect")
-      .transition().duration(25).attr("fill", "#CCCCCC");
+  d3.select(this).select("rect")
+    .transition().duration(25).attr("fill", "#CCCCCC");
 
-    d3.select("div.info").append("p").text("Patients: " + data.value);
+  d3.select("#info").attr("class", "MM_info");
+  d3.select("#info").append("p").text("Total Patients: " + data.value);
 
-    
-    var xScale2 = d3.scale.ordinal()
-                .domain(d3.range(data.age.length))
-                .rangeRoundBands([0, w], 0.05);
+  
+  var xScale2 = d3.scale.ordinal()
+              .domain(d3.range(data.age.length))
+              .rangeRoundBands([0, w], 0.05);
 
-    var yScale2 = d3.scale.linear()
-                .domain([0, data.value])
-                .range([0, h]); 
+  var yScale2 = d3.scale.linear()
+              .domain([0, data.value])
+              .range([0, h - 15]); 
 
-    var svg = d3.select("div.info").append("svg")    
-                .attr("width", w)
-                .attr("height", h);
+  var svg = d3.select("#info").append("svg")    
+              .attr("width", w)
+              .attr("height", h);
 
-    console.log(data.age)
+  console.log(data)
 
-    var groups = svg.selectAll("g")
-                  .data(data.age)
-                  .enter().append("g");
+  var groups = svg.selectAll("g")
+                .data(data.age)
+                .enter().append("g");
 
-    groups.append("rect")
-      .attr({
-        x:      function(d, i) {return xScale2(i)},
-        y:      function(d) {return h - yScale2(d)},
-        width:  xScale2.rangeBand(),
-        height: function(d) {return yScale2(d)},
-        fill:   barHighlightColor,
-        });
+  groups.append("rect")
+    .attr({
+      x:      function(d, i) {return xScale2(i)},
+      y:      function(d) {return h - yScale2(d) - 15},
+      width:  xScale2.rangeBand(),
+      height: function(d) {return yScale2(d)},
+      fill:   barHighlightColor,
+      });
 
-    // groups.append("text")
-    //  .text(function(d) {return Math.floor(d[1])})
-    //  .attr({
-    //   fill:   barColor,
-    //   "text-anchor": "middle",
-    //   "font-size":  "12px", 
-    //   "font-family": "sans-serif",
-    //   x:      function(d, i) {return xScale2(i) + xScale.rangeBand2()/2},
-    //   y:      function(d) {return h - yScale2(d[1]) + 20}  
-    //  });
+  groups.append("text")
+   .text(function(d) {return percentFormat(d/data.value);})
+   .attr({
+    fill:   "#EEEEEE",
+    "text-anchor": "middle",
+    "font-size":  "11px", 
+    "font-family": "sans-serif",
+    x:      function(d, i) {return xScale2(i) + xScale2.rangeBand()/2},
+    y:      function(d) {return h - yScale2(d)}  
+   });
 
-  }
+  groups.append("text")
+   .text(function(d,i) {return data.age_values[i];})
+   .attr({
+    fill:   "#222222",
+    "text-anchor": "middle",
+    "font-size":  "12px", 
+    "font-family": "sans-serif",
+    "font-weight": "bold",
+    x:      function(d, i) {return xScale2(i) + xScale2.rangeBand()/2},
+    y:      function(d) {return h}  
+   });
+
+  svg.append("text").text("Age Distribution")
+    .attr( {
+      fill:   "#222222",
+      "font-size":  "14px", 
+      "font-family": "sans-serif",
+      "font-weight": "bold",
+      y: 20 });
+
+}
 
 
-  function mouseoutCell() {
-    d3.select(this).select("rect")
-      .transition().duration(25).attr("fill", "#EEEEEE");
-    
-    d3.select("div.info").selectAll("p").remove();
-    d3.select("svg").remove();
+function mouseoutCell() {
+  d3.select(this).select("rect")
+    .transition().duration(25).attr("fill", "#EEEEEE");
+  
+  d3.select("#info").selectAll("p").remove();
+  d3.select("svg").remove();
   }

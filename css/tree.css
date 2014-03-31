@@ -44,21 +44,21 @@ div.header {
     font-family: sans-serif;
     font-size: 25px;
     font-weight: bold;
-    min-width: 1500px;
+    min-width: 1070px;
     color: #222;
     border-bottom: 1px solid #aaa;
     margin: 20px;
 }
 
 div.container {
-	min-width: 1500px;
+	min-width: 1070px;
 }
 
 div.footer {
     font-family: sans-serif;
     font-size: 10px;
     color: #bbb;
-    min-width: 1500px;
+    min-width: 1070px;
     border-top: 1px solid #ddd;
     margin: 20px;
     padding-top: 5px;
@@ -67,7 +67,7 @@ div.footer {
 
 div.leftmenu {
 	float: left;
-	width: 200px;
+	width: 170px;
 	height: 600px;
 	margin-left: 20px;
 	padding-left: 10px;
@@ -79,9 +79,16 @@ div.main {
 	margin-right: auto;
 }
 
-div.info {
+p {
+  color: #3F6FB8;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-style: italic;
+}
+
+#info {
 	float: right;
-	width: 300px;
+	width: 250px;
 	height: 600px;
 	margin-left: auto;
 	margin-right: 20px;
@@ -89,11 +96,11 @@ div.info {
 	background-color: white;
 }
 
-p {
-  color: #3F6FB8;
+.MM_info p {
+  color: #222222;
   font-family: sans-serif;
-  font-size: 12px;
-  font-style: italic;
+  font-size: 18px;
+  font-style: normal;
 }
 
 
